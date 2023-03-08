@@ -18,3 +18,4 @@ try:
         print(word, word_freq[word])
 except FileNotFoundError as fe:
     print(f'Error: {filename} not found')
+
