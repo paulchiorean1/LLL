@@ -3,18 +3,18 @@ import csv
 filename = "input1.csv"
 
 word_freq = {}
-
-with open(filename, 'r') as csvfile:
-    reader = csv.reader(csvfile)
-    for row in reader:
-        for word in row:
-            word = word.lower()
-            if word not in word_freq:
-                word_freq[word] = 1
-            else:
+try:
+    reader = open(filename, 'r')
+    csvFileReader = csv.reader(reader)
+    for line in csvFileReader:
+        for word in line:
+            if word in word_freq:
                 word_freq[word] += 1
+            else:
+                word_freq[word] = 1
+    reader.close()
 
-for word, freq in word_freq.items():
-    print(word, freq)
-
-print()
+    for word in word_freq:
+        print(word, word_freq[word])
+except FileNotFoundError as fe:
+    print(f'Error: {filename} not found')
